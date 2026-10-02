@@ -48,10 +48,10 @@ int main(){
 	server.sin_port = htons (DEBUG_PORT);          //in defines.h
 	memset(server.sin_zero, 0, sizeof(server.sin_zero));
 	g_debug_sock = socket(AF_INET, SOCK_STREAM, 0);
-	connect(sock, (struct sockaddr *)&server, sizeof(server));
+	connect(g_debug_sock, (struct sockaddr *)&server, sizeof(server));
 
 	int flag = 1;
-	setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, (char *)&flag, sizeof(int));
+	setsockopt(g_debug_sock, IPPROTO_TCP, TCP_NODELAY, (char *)&flag, sizeof(int));
 
 	//Output paths must already exist!
 	decrypt_pups("/mnt/usb0/safe.PS5UPDATE.PUP", "/mnt/usb0/%s.dec"); // replace with /mnt/usb0/safe.PROSPEROUPDATE.PUP for legacy < 2.xx pups
